@@ -7,7 +7,7 @@
 <meta name="description" content="MUUD Elixir — an organic, fair-trade elixir powered by 7 functional mushrooms + ashwagandha and raw cacao. For body, mind & soul. Handcrafted in London, Ontario.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#f6efe2;
@@ -65,9 +65,8 @@
     padding:26px 0;
   }
   .nav{display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;align-items:baseline;gap:.35em;text-decoration:none}
-  .brand .m{font-family:var(--serif);font-weight:600;font-size:1.5rem;letter-spacing:.14em}
-  .brand .e{font-family:var(--script);font-size:1.7rem;line-height:1;transform:translateY(2px)}
+  .brand{display:inline-flex;align-items:center;text-decoration:none}
+  .brand img{height:44px;width:auto;display:block}
   .nav-links{display:flex;gap:34px;align-items:center}
   .nav-links a{
     text-decoration:none;color:var(--ink);font-size:.82rem;
@@ -85,11 +84,10 @@
   }
   .hero-copy{max-width:560px}
   .hero .mark{
-    display:inline-flex;align-items:baseline;gap:.4em;margin-bottom:26px;
+    display:inline-flex;margin-bottom:28px;
     opacity:0;animation:rise .9s .1s forwards cubic-bezier(.2,.7,.2,1);
   }
-  .hero .mark .m{font-family:var(--serif);font-weight:600;font-size:3.4rem;letter-spacing:.1em}
-  .hero .mark .e{font-family:var(--script);font-size:3.6rem;line-height:1}
+  .hero .mark img{height:118px;width:auto;display:block}
   .ritual-line{
     display:flex;gap:16px;align-items:center;margin-bottom:22px;
     opacity:0;animation:rise .9s .25s forwards cubic-bezier(.2,.7,.2,1);
@@ -298,7 +296,7 @@
   /* footer */
   footer{padding:64px 0 40px;border-top:1px solid var(--line);margin-top:100px}
   .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-  .foot .brand .m{font-size:1.3rem}.foot .brand .e{font-size:1.5rem}
+  .foot .brand img{height:34px}
   .foot p{font-size:.82rem;color:var(--ink-soft)}
   .foot .loc{font-family:var(--serif);font-style:italic;color:var(--plum)}
 
@@ -314,7 +312,7 @@
   .bb-left{display:flex;align-items:center;gap:16px;min-width:0}
   .bb-thumb{width:46px;height:46px;border-radius:12px;overflow:hidden;flex:0 0 auto;border:1px solid var(--line)}
   .bb-info{min-width:0}
-  .bb-info b{font-family:var(--serif);font-weight:600;font-size:1rem;letter-spacing:.06em;display:block;line-height:1.2}
+  .bb-logo{height:40px;width:auto;display:block;margin-bottom:2px}
   .bb-info span{font-size:.78rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
   .bb-right{display:flex;align-items:center;gap:18px;flex:0 0 auto}
   .bb-price{font-family:var(--serif);font-size:1.25rem;font-weight:600}
@@ -343,7 +341,7 @@
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top"><span class="m grad-text">MUUD</span><span class="e grad-text">Elixir</span></a>
+    <a class="brand" href="#top"><img src="images/logo-lockup.png" alt="MUUD Elixir"></a>
     <nav class="nav-links">
       <a href="#ingredients">Ingredients</a>
       <a href="#ritual">The Ritual</a>
@@ -356,7 +354,7 @@
 <a id="top"></a>
 <section class="hero wrap">
   <div class="hero-copy">
-    <span class="mark"><span class="m grad-text">MUUD</span><span class="e grad-text">Elixir</span></span>
+    <span class="mark"><img src="images/logo-lockup.png" alt="MUUD Elixir"></span>
     <div class="ritual-line"><b></b><span>Renew · Remember · Return</span><b></b></div>
     <h1>Nature's wisdom,<br><em>modern alchemy.</em></h1>
     <p class="lede">An organic, fair-trade elixir powered by seven functional mushrooms, ashwagandha &amp; raw cacao. One warm cup — for body, mind &amp; soul.</p>
@@ -507,7 +505,7 @@
 
 <footer>
   <div class="wrap foot">
-    <a class="brand" href="#top"><span class="m grad-text">MUUD</span><span class="e grad-text">Elixir</span></a>
+    <a class="brand" href="#top"><img src="images/logo-lockup.png" alt="MUUD Elixir"></a>
     <p class="loc">Renew · Remember · Return — London, Ontario</p>
     <p>© 2026 MUUD Elixir. All organic, fair trade.</p>
   </div>
@@ -518,7 +516,7 @@
   <div class="wrap">
     <div class="bb-left">
       <div class="bb-thumb"><img src="images/jar.jpg" alt=""></div>
-      <div class="bb-info"><b>MUUD Elixir</b><span>80g · 7 mushrooms + ashwagandha</span></div>
+      <div class="bb-info"><img src="images/logo-lockup.png" alt="MUUD Elixir" class="bb-logo"><span>80g · 7 mushrooms + ashwagandha</span></div>
     </div>
     <div class="bb-right">
       <div class="bb-price"><s>$44</s>$38</div>
