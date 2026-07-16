@@ -293,6 +293,26 @@
   .btn-light{background:var(--paper);color:var(--plum)}
   .btn-light:hover{transform:translateY(-2px)}
 
+  /* pricing tiers */
+  .tiers{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin:6px auto 20px}
+  .tier{
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);
+    border-radius:22px;padding:30px 34px 32px;min-width:230px;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    backdrop-filter:blur(6px);position:relative;
+  }
+  .tier-feature{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.55)}
+  .tier-badge{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+    background:var(--gold);color:#2a1030;font-size:.66rem;letter-spacing:.09em;
+    text-transform:uppercase;font-weight:700;padding:5px 14px;border-radius:100px;white-space:nowrap;
+  }
+  .tier-name{font-family:var(--serif);font-style:italic;font-size:1.3rem}
+  .tier-price{font-family:var(--serif);font-size:2.3rem;font-weight:600;line-height:1}
+  .tier-note{font-size:.8rem;opacity:.85;margin-bottom:12px;min-height:1.1em}
+  .tier .btn{margin-top:2px}
+  .ship-note{opacity:.82;font-size:.85rem;margin:2px 0 0}
+
   /* footer */
   footer{padding:64px 0 40px;border-top:1px solid var(--line);margin-top:100px}
   .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
@@ -314,18 +334,13 @@
   .bb-info{min-width:0}
   .bb-logo{height:40px;width:auto;display:block;margin-bottom:2px}
   .bb-info span{font-size:.78rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-  .bb-right{display:flex;align-items:center;gap:18px;flex:0 0 auto}
-  .bb-price{font-family:var(--serif);font-size:1.25rem;font-weight:600}
-  .bb-price s{font-size:.85rem;opacity:.5;font-weight:400;margin-right:6px}
-  .qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:100px;overflow:hidden}
-  .qty button{width:34px;height:38px;border:none;background:transparent;cursor:pointer;font-size:1.1rem;color:var(--ink);font-family:var(--sans)}
-  .qty button:hover{color:var(--plum)}
-  .qty span{min-width:26px;text-align:center;font-size:.95rem;font-weight:500}
-  .bb-buy{padding:15px 30px}
+  .bb-right{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+  .bb-buy{padding:14px 26px;white-space:nowrap}
+  .bb-buy-alt{border:1px solid var(--line)}
   @media(max-width:640px){
-    .bb-info span,.qty,.bb-price s{display:none}
-    .bb-buy{padding:14px 22px;font-size:.76rem}
-    .buybar .wrap{padding:0 16px}
+    .bb-info span{display:none}
+    .bb-buy{padding:12px 16px;font-size:.72rem}
+    .buybar .wrap{padding:0 12px}
   }
 
   @keyframes rise{to{opacity:1;transform:none}}
@@ -357,10 +372,10 @@
     <span class="mark"><img src="images/logo-lockup.png" alt="MUUD Elixir"></span>
     <div class="ritual-line"><b></b><span>Renew · Remember · Return</span><b></b></div>
     <h1>Nature's wisdom,<br><em>modern alchemy.</em></h1>
-    <p class="lede">An organic, fair-trade elixir powered by seven functional mushrooms, ashwagandha &amp; raw cacao. One warm cup — for body, mind &amp; soul.</p>
+    <p class="lede">An organic, fair-trade elixir powered by seven functional mushrooms, ashwagandha &amp; raw cacao. One cup — for body, mind &amp; soul.</p>
     <div class="hero-cta">
       <a href="#buy" class="btn btn-primary">Begin the ritual →</a>
-      <span class="price-note"><s>$44</s>$38 · 80g jar</span>
+      <span class="price-note">$19.99 · 80g jar · + shipping</span>
     </div>
   </div>
   <div class="hero-visual">
@@ -497,8 +512,24 @@
       <span class="eyebrow" style="color:rgba(255,255,255,.85)">80g jar · ~30 servings</span>
       <h2>Fuel your body.<br><em>Calm your mind.</em></h2>
       <p>Elevate your soul — one cup, every day, for a better you. Handcrafted in small batches in London, Ontario.</p>
-      <!-- TODO: replace href with the Shopify Buy Button / checkout link once the store is live -->
-      <a href="#" class="btn btn-light" data-buy>Add to cart · $38 →</a>
+      <div class="tiers">
+        <div class="tier">
+          <span class="tier-name">Single jar</span>
+          <span class="tier-price">$19.99</span>
+          <span class="tier-note">80g · ~30 servings</span>
+          <!-- TODO: swap href="#" for the PayPal hosted-button snippet (SINGLE, item $19.99 + $20 shipping). Same one-line swap later for Shopify. -->
+          <a href="#" class="btn btn-light" data-buy data-product="single">Buy one →</a>
+        </div>
+        <div class="tier tier-feature">
+          <span class="tier-badge">Best value · save $40</span>
+          <span class="tier-name">3-pack</span>
+          <span class="tier-price">$59.99</span>
+          <span class="tier-note">3 × 80g · one shipping fee</span>
+          <!-- TODO: swap href="#" for the PayPal hosted-button snippet (3-PACK, item $59.99 + $20 shipping). Same one-line swap later for Shopify. -->
+          <a href="#" class="btn btn-light" data-buy data-product="triple">Buy three →</a>
+        </div>
+      </div>
+      <p class="ship-note">Flat $20 shipping covers 1–3 jars · all prices plus tax.</p>
     </div>
   </div>
 </section>
@@ -519,14 +550,9 @@
       <div class="bb-info"><img src="images/logo-lockup.png" alt="MUUD Elixir" class="bb-logo"><span>80g · 7 mushrooms + ashwagandha</span></div>
     </div>
     <div class="bb-right">
-      <div class="bb-price"><s>$44</s>$38</div>
-      <div class="qty">
-        <button type="button" data-dec aria-label="decrease">–</button>
-        <span data-qty>1</span>
-        <button type="button" data-inc aria-label="increase">+</button>
-      </div>
-      <!-- TODO: point this at the Shopify checkout URL tomorrow -->
-      <a href="#" class="btn btn-primary bb-buy" data-buy>Buy now</a>
+      <!-- TODO: swap each href="#" for the matching PayPal hosted-button snippet (or Shopify link) -->
+      <a href="#" class="btn btn-light bb-buy bb-buy-alt" data-buy data-product="single">1&nbsp;jar · $19.99</a>
+      <a href="#" class="btn btn-primary bb-buy" data-buy data-product="triple">3-pack · $59.99</a>
     </div>
   </div>
 </div>
@@ -536,14 +562,13 @@
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // qty stepper
-  const q=document.querySelector('[data-qty]');let n=1;
-  document.querySelector('[data-inc]').onclick=()=>{n=Math.min(9,n+1);q.textContent=n};
-  document.querySelector('[data-dec]').onclick=()=>{n=Math.max(1,n-1);q.textContent=n};
-
-  // placeholder buy — remove this once real Shopify links are in
+  // placeholder buy — remove once each href="#" is swapped for its real PayPal button (or Shopify link)
   document.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',ev=>{
-    if(b.getAttribute('href')==='#'){ev.preventDefault();alert('Checkout goes live once the Shopify store is connected. (Placeholder link.)')}
+    if(b.getAttribute('href')==='#'){
+      ev.preventDefault();
+      const p=b.dataset.product==='triple'?'3-pack — $59.99':'single jar — $19.99';
+      alert('Checkout goes live once the PayPal buttons are connected.\n\nPlaceholder: '+p+' + $20 flat shipping, plus tax.');
+    }
   }));
 </script>
 </body>

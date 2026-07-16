@@ -8,14 +8,16 @@ Single-page static site for MUUD Elixir. No build step — just `index.html` + `
 
 **Option B — GitHub Pages:** push this repo to GitHub, then Settings → Pages → deploy from `main` / root.
 
-## Wiring up the real "Buy" button (Shopify)
+## Wiring up the real "Buy" buttons (PayPal)
 
-Everything checkout-related is a placeholder link (`href="#"`) marked with `TODO` comments. Two spots to update in `index.html`:
+Two products: **single jar $19.99** and **3-pack $59.99** (item prices), plus a flat **$20 shipping** charge (covers 1–3 units) configured in PayPal, plus tax. All checkout links are placeholders (`href="#"`) marked with `TODO` comments. There are **four** spots, two per product (buy section + sticky bar), identified by `data-product="single"` / `data-product="triple"`:
 
-1. The persistent bottom bar — `.bb-buy` link (`data-buy`).
-2. The big buy section — `.btn-light` link (`data-buy`).
+1. Buy section (`#buy` → `.tiers`) — one link per tier.
+2. Sticky bottom bar (`.bb-right`) — one link per product.
 
-Once the Shopify Starter store + Buy Button exists, replace both `href="#"` values with the Shopify checkout / product URL, then delete the `[data-buy]` placeholder-alert block at the bottom of the `<script>`.
+**To go live:** in the PayPal **Business** dashboard, create a Hosted Button for each product (set price + the $20 shipping). PayPal gives you a hosted-button ID / HTML snippet. Replace the matching `href="#"` links (or swap them for PayPal's snippet), then delete the `[data-buy]` placeholder-alert block at the bottom of the `<script>`.
+
+**Later moving to Shopify?** Same swap — replace the same links with the Shopify checkout URLs and adjust prices. No structural changes needed.
 
 ## Editing content
 
