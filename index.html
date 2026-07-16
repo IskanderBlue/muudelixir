@@ -313,6 +313,8 @@
   .tier .btn{margin-top:2px}
   /* PayPal hosted-button container sits where the CTA button was */
   .paypal-btn{margin-top:6px;min-height:46px;width:100%;max-width:260px;margin-left:auto;margin-right:auto}
+  .pp-btn{text-align:center;border:none;border-radius:.5rem;width:100%;min-width:11.625rem;padding:0 2rem;height:2.75rem;font-weight:700;background:#FFD140;color:#000;font-family:inherit;font-size:1rem;line-height:1.25rem;cursor:pointer;transition:filter .15s ease}
+  .pp-btn:hover{filter:brightness(.95)}
   .ship-note{opacity:.82;font-size:.85rem;margin:2px 0 0}
 
   /* footer */
@@ -519,16 +521,28 @@
           <span class="tier-name">Single jar</span>
           <span class="tier-price">$39.99</span>
           <span class="tier-note">80g · ~30 servings · shipping included</span>
-          <!-- PayPal hosted button — SINGLE ($39.99 all-in, shipping included). To move to Shopify later, replace this div with the Shopify link. -->
-          <div class="paypal-btn" id="paypal-container-LU3HG5AQLKKJC"></div>
+          <!-- PayPal hosted button — SINGLE ($39.99 all-in, shipping included). To move to Shopify later, replace this form with the Shopify link. -->
+          <div class="paypal-btn">
+            <form action="https://www.paypal.com/ncp/payment/LU3HG5AQLKKJC" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+              <input class="pp-btn" type="submit" value="Buy Now" />
+              <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+              <section style="font-size:0.75rem;">Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+            </form>
+          </div>
         </div>
         <div class="tier tier-feature">
           <span class="tier-badge">Best value · save $40</span>
           <span class="tier-name">3-pack</span>
           <span class="tier-price">$79.99</span>
           <span class="tier-note">3 × 80g · shipping included</span>
-          <!-- PayPal hosted button — 3-PACK ($79.99 all-in, shipping included). To move to Shopify later, replace this div with the Shopify link. -->
-          <div class="paypal-btn" id="paypal-container-H3QYSLKAVYKU2"></div>
+          <!-- PayPal hosted button — 3-PACK ($79.99 all-in, shipping included). To move to Shopify later, replace this form with the Shopify link. -->
+          <div class="paypal-btn">
+            <form action="https://www.paypal.com/ncp/payment/H3QYSLKAVYKU2" method="post" target="_blank" style="display:inline-grid;justify-items:center;align-content:start;gap:0.5rem;">
+              <input class="pp-btn" type="submit" value="Buy Now" />
+              <img src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg" alt="cards" />
+              <section style="font-size:0.75rem;">Powered by <img src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg" alt="paypal" style="height:0.875rem;vertical-align:middle;"/></section>
+            </form>
+          </div>
         </div>
       </div>
       <p class="ship-note">Shipping included — one flat rate covers up to 3 jars.</p>
@@ -565,11 +579,6 @@
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 
-<!-- PayPal hosted buttons (single + 3-pack). Shared account SDK. -->
-<script src="https://www.paypal.com/sdk/js?client-id=BAABiJhiKH1Yk6Koy7D4egJkwWGrTSPbmwMIGswsN-cXm-Zq1w5Mf8VAHtNRtMvU5ni4U_KVsNK7HXsh-0&components=hosted-buttons&disable-funding=venmo&currency=CAD"></script>
-<script>
-  paypal.HostedButtons({ hostedButtonId: "LU3HG5AQLKKJC" }).render("#paypal-container-LU3HG5AQLKKJC"); // single $39.99 (shipping incl.)
-  paypal.HostedButtons({ hostedButtonId: "H3QYSLKAVYKU2" }).render("#paypal-container-H3QYSLKAVYKU2"); // 3-pack $79.99 (shipping incl.)
-</script>
+<!-- PayPal buy buttons are standalone POST forms in #buy (no SDK needed). -->
 </body>
 </html>
