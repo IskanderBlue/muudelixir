@@ -311,6 +311,8 @@
   .tier-price{font-family:var(--serif);font-size:2.3rem;font-weight:600;line-height:1}
   .tier-note{font-size:.8rem;opacity:.85;margin-bottom:12px;min-height:1.1em}
   .tier .btn{margin-top:2px}
+  /* PayPal hosted-button container sits where the CTA button was */
+  .paypal-btn{margin-top:6px;min-height:46px;width:100%;max-width:260px;margin-left:auto;margin-right:auto}
   .ship-note{opacity:.82;font-size:.85rem;margin:2px 0 0}
 
   /* footer */
@@ -375,7 +377,7 @@
     <p class="lede">An organic, fair-trade elixir powered by seven functional mushrooms, ashwagandha &amp; raw cacao. One cup — for body, mind &amp; soul.</p>
     <div class="hero-cta">
       <a href="#buy" class="btn btn-primary">Begin the ritual →</a>
-      <span class="price-note">$19.99 · 80g jar · + shipping</span>
+      <span class="price-note">$39.99 · 80g jar · shipping included</span>
     </div>
   </div>
   <div class="hero-visual">
@@ -515,21 +517,21 @@
       <div class="tiers">
         <div class="tier">
           <span class="tier-name">Single jar</span>
-          <span class="tier-price">$19.99</span>
-          <span class="tier-note">80g · ~30 servings</span>
-          <!-- TODO: swap href="#" for the PayPal hosted-button snippet (SINGLE, item $19.99 + $20 shipping). Same one-line swap later for Shopify. -->
-          <a href="#" class="btn btn-light" data-buy data-product="single">Buy one →</a>
+          <span class="tier-price">$39.99</span>
+          <span class="tier-note">80g · ~30 servings · shipping included</span>
+          <!-- PayPal hosted button — SINGLE ($39.99 all-in, shipping included). To move to Shopify later, replace this div with the Shopify link. -->
+          <div class="paypal-btn" id="paypal-container-LU3HG5AQLKKJC"></div>
         </div>
         <div class="tier tier-feature">
           <span class="tier-badge">Best value · save $40</span>
           <span class="tier-name">3-pack</span>
-          <span class="tier-price">$59.99</span>
-          <span class="tier-note">3 × 80g · one shipping fee</span>
-          <!-- TODO: swap href="#" for the PayPal hosted-button snippet (3-PACK, item $59.99 + $20 shipping). Same one-line swap later for Shopify. -->
-          <a href="#" class="btn btn-light" data-buy data-product="triple">Buy three →</a>
+          <span class="tier-price">$79.99</span>
+          <span class="tier-note">3 × 80g · shipping included</span>
+          <!-- PayPal hosted button — 3-PACK ($79.99 all-in, shipping included). To move to Shopify later, replace this div with the Shopify link. -->
+          <div class="paypal-btn" id="paypal-container-H3QYSLKAVYKU2"></div>
         </div>
       </div>
-      <p class="ship-note">Flat $20 shipping covers 1–3 jars · all prices plus tax.</p>
+      <p class="ship-note">Shipping included — one flat rate covers up to 3 jars.</p>
     </div>
   </div>
 </section>
@@ -550,9 +552,9 @@
       <div class="bb-info"><img src="images/logo-lockup.png" alt="MUUD Elixir" class="bb-logo"><span>80g · 7 mushrooms + ashwagandha</span></div>
     </div>
     <div class="bb-right">
-      <!-- TODO: swap each href="#" for the matching PayPal hosted-button snippet (or Shopify link) -->
-      <a href="#" class="btn btn-light bb-buy bb-buy-alt" data-buy data-product="single">1&nbsp;jar · $19.99</a>
-      <a href="#" class="btn btn-primary bb-buy" data-buy data-product="triple">3-pack · $59.99</a>
+      <!-- these scroll up to the live PayPal buttons in #buy -->
+      <a href="#buy" class="btn btn-light bb-buy bb-buy-alt">1&nbsp;jar · $39.99</a>
+      <a href="#buy" class="btn btn-primary bb-buy">3-pack · $79.99</a>
     </div>
   </div>
 </div>
@@ -561,15 +563,13 @@
   // scroll reveal
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
 
-  // placeholder buy — remove once each href="#" is swapped for its real PayPal button (or Shopify link)
-  document.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click',ev=>{
-    if(b.getAttribute('href')==='#'){
-      ev.preventDefault();
-      const p=b.dataset.product==='triple'?'3-pack — $59.99':'single jar — $19.99';
-      alert('Checkout goes live once the PayPal buttons are connected.\n\nPlaceholder: '+p+' + $20 flat shipping, plus tax.');
-    }
-  }));
+<!-- PayPal hosted buttons (single + 3-pack). Shared account SDK. -->
+<script src="https://www.paypal.com/sdk/js?client-id=BAABiJhiKH1Yk6Koy7D4egJkwWGrTSPbmwMIGswsN-cXm-Zq1w5Mf8VAHtNRtMvU5ni4U_KVsNK7HXsh-0&components=hosted-buttons&disable-funding=venmo&currency=CAD"></script>
+<script>
+  paypal.HostedButtons({ hostedButtonId: "LU3HG5AQLKKJC" }).render("#paypal-container-LU3HG5AQLKKJC"); // single $39.99 (shipping incl.)
+  paypal.HostedButtons({ hostedButtonId: "H3QYSLKAVYKU2" }).render("#paypal-container-H3QYSLKAVYKU2"); // 3-pack $79.99 (shipping incl.)
 </script>
 </body>
 </html>

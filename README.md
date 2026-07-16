@@ -8,16 +8,22 @@ Single-page static site for MUUD Elixir. No build step — just `index.html` + `
 
 **Option B — GitHub Pages:** push this repo to GitHub, then Settings → Pages → deploy from `main` / root.
 
-## Wiring up the real "Buy" buttons (PayPal)
+## Buy buttons (PayPal — live)
 
-Two products: **single jar $19.99** and **3-pack $59.99** (item prices), plus a flat **$20 shipping** charge (covers 1–3 units) configured in PayPal, plus tax. All checkout links are placeholders (`href="#"`) marked with `TODO` comments. There are **four** spots, two per product (buy section + sticky bar), identified by `data-product="single"` / `data-product="triple"`:
+Two products, priced **all-in with shipping included** (no separate tax line):
 
-1. Buy section (`#buy` → `.tiers`) — one link per tier.
-2. Sticky bottom bar (`.bb-right`) — one link per product.
+| Product   | Price      | PayPal hosted-button ID |
+|-----------|------------|-------------------------|
+| Single jar | $39.99 CAD | `LU3HG5AQLKKJC` |
+| 3-pack     | $79.99 CAD | `H3QYSLKAVYKU2` |
 
-**To go live:** in the PayPal **Business** dashboard, create a Hosted Button for each product (set price + the $20 shipping). PayPal gives you a hosted-button ID / HTML snippet. Replace the matching `href="#"` links (or swap them for PayPal's snippet), then delete the `[data-buy]` placeholder-alert block at the bottom of the `<script>`.
+These render as PayPal Hosted Buttons via the SDK `<script>` block near the bottom of `index.html`:
+- Each tier in the buy section (`#buy` → `.tiers`) has a `<div id="paypal-container-…">` that the SDK renders the real PayPal button into.
+- The sticky bottom bar buttons are plain `#buy` anchors that smooth-scroll up to the live buttons (PayPal buttons don't fit the cramped bar).
 
-**Later moving to Shopify?** Same swap — replace the same links with the Shopify checkout URLs and adjust prices. No structural changes needed.
+**Changing prices/products:** edit the button in the PayPal Business dashboard (paypal.com/buttons) — the price is stored server-side, so the site needs no change unless the displayed price text (tier `.tier-price`, hero `.price-note`, bar buttons) needs updating to match. To swap a product entirely, generate a new hosted button and replace the `hostedButtonId` + container `id` in both the `<div>` and the `.render()` call.
+
+**Later moving to Shopify?** Replace each `<div id="paypal-container-…">` with a Shopify buy link/button and remove the PayPal SDK block. Update the displayed price text to match.
 
 ## Editing content
 
