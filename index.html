@@ -4,26 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MUUD Elixir — Renew · Remember · Return</title>
-<meta name="description" content="MUUD Elixir — an organic, fair-trade elixir powered by 7 functional mushrooms + ashwagandha and raw cacao. For body, mind & soul. Handcrafted in London, Ontario.">
+<meta name="description" content="MUUD Elixir — an organic elixir powered by 7 functional mushrooms + ashwagandha and raw cacao. For body, mind & soul. Handcrafted in London, Ontario.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Jost:wght@300;400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#f6efe2;
     --paper-2:#efe5d3;
     --ink:#2a1b3d;
     --ink-soft:#5a4a63;
-    --plum:#4a1f6e;
-    --teal:#1b9e94;
-    --purple:#6a2ea0;
+    --plum:#53348d;
+    --teal:#1a8a85;
+    --navy:#0a2868;
+    --purple:#3f2083;
     --gold:#c39a49;
     --gold-soft:#d8b775;
     --line:rgba(42,27,61,.14);
-    --grad:linear-gradient(102deg,#17a89a 0%,#2f7fb5 38%,#6a2ea0 78%,#3d1560 100%);
-    --grad-soft:linear-gradient(102deg,rgba(23,168,154,.14),rgba(106,46,160,.14));
+    --grad:linear-gradient(102deg,#1a8a85 0%,#0a2868 42%,#3f2083 78%,#2d1458 100%);
+    --grad-soft:linear-gradient(102deg,rgba(26,138,133,.14),rgba(63,32,131,.14));
     --serif:"Fraunces",Georgia,serif;
     --sans:"Jost",system-ui,sans-serif;
+    --logo-sans:"Montserrat",var(--sans);
     --script:"Pinyon Script",cursive;
     --bar-h:76px;
   }
@@ -42,8 +44,8 @@
   body::before{
     content:"";position:fixed;inset:0;z-index:-2;
     background:
-      radial-gradient(120% 80% at 15% -10%, rgba(27,158,148,.10), transparent 55%),
-      radial-gradient(120% 80% at 100% 0%, rgba(106,46,160,.10), transparent 55%),
+      radial-gradient(120% 80% at 15% -10%, rgba(26,138,133,.10), transparent 55%),
+      radial-gradient(120% 80% at 100% 0%, rgba(63,32,131,.10), transparent 55%),
       var(--paper);
   }
   body::after{
@@ -64,30 +66,45 @@
     position:absolute;top:0;left:0;right:0;z-index:20;
     padding:26px 0;
   }
-  .nav{display:flex;align-items:center;justify-content:space-between}
+  .nav{display:flex;align-items:center;justify-content:flex-end;position:relative}
   .brand{display:inline-flex;align-items:center;text-decoration:none}
-  .brand img{height:44px;width:auto;display:block}
-  .nav-links{display:flex;gap:34px;align-items:center}
+  .brand img{height:auto;width:91px;display:block}
+  .nav-check{position:absolute;opacity:0;pointer-events:none}
+  .nav-toggle{
+    display:none;width:40px;height:40px;flex-direction:column;justify-content:center;
+    gap:6px;cursor:pointer;
+  }
+  .nav-toggle span{display:block;height:1.5px;width:100%;background:var(--ink);border-radius:2px}
+  .nav-links{display:flex;gap:22px;align-items:center}
   .nav-links a{
     text-decoration:none;color:var(--ink);font-size:.82rem;
     letter-spacing:.16em;text-transform:uppercase;font-weight:400;opacity:.8;
     transition:opacity .2s;
   }
   .nav-links a:hover{opacity:1}
-  @media(max-width:820px){.nav-links{display:none}}
+  @media(max-width:1100px){
+    .nav-toggle{display:flex}
+    .nav-links{
+      display:none;position:absolute;top:calc(100% + 10px);right:0;
+      flex-direction:column;align-items:flex-end;gap:18px;
+      background:rgba(246,239,226,.96);border:1px solid var(--line);
+      border-radius:16px;padding:22px 26px;box-shadow:0 18px 40px -20px rgba(42,27,61,.45);
+    }
+    .nav-check:checked ~ .nav-links{display:flex}
+  }
 
   /* ---------- hero ---------- */
   .hero{
     position:relative;min-height:100vh;display:grid;
     grid-template-columns:1.05fr .95fr;align-items:center;gap:20px;
-    padding-top:96px;
+    padding-top:48px;padding-bottom:110px;padding-bottom:110px;
   }
   .hero-copy{max-width:560px}
   .hero .mark{
-    display:inline-flex;margin-bottom:28px;
+    display:inline-flex;margin-bottom:18px;
     opacity:0;animation:rise .9s .1s forwards cubic-bezier(.2,.7,.2,1);
   }
-  .hero .mark img{height:118px;width:auto;display:block}
+  .hero .mark img{height:auto;width:min(100%,307px);display:block}
   .ritual-line{
     display:flex;gap:16px;align-items:center;margin-bottom:22px;
     opacity:0;animation:rise .9s .25s forwards cubic-bezier(.2,.7,.2,1);
@@ -116,8 +133,8 @@
     font-weight:500;padding:17px 34px;border-radius:100px;text-decoration:none;
     transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s;
   }
-  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 30px -12px rgba(74,31,110,.7)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(74,31,110,.75)}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 30px -12px rgba(63,32,131,.7)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(63,32,131,.75)}
   .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
   .btn-ghost:hover{border-color:var(--plum);color:var(--plum)}
   .price-note{font-size:.85rem;color:var(--ink-soft)}
@@ -145,7 +162,7 @@
   .badge .dot{width:9px;height:9px;border-radius:50%;background:var(--grad)}
   .badge span{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
   @media(max-width:900px){
-    .hero{grid-template-columns:1fr;text-align:center;padding-top:120px;padding-bottom:40px}
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:58px;padding-bottom:110px}
     .hero-copy{margin:0 auto}
     .ritual-line,.hero-cta{justify-content:center}
     .jar-frame{max-width:320px;margin:0 auto}
@@ -184,38 +201,40 @@
   .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:rgba(255,255,255,.3)}
   .pillar{padding:38px 32px;border-right:1px solid var(--line)}
   .pillar:last-child{border-right:none}
-  .pillar .num{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.1rem;margin-bottom:14px}
-  .pillar h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;margin-bottom:10px}
+  .pillar h3{
+    font-family:var(--logo-sans);font-weight:600;font-size:1.02rem;
+    letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px;
+  }
+  .pillar:nth-child(1) h3{color:var(--teal)}
+  .pillar:nth-child(2) h3{color:var(--navy)}
+  .pillar:nth-child(3) h3{color:var(--purple)}
   .pillar p{color:var(--ink-soft);font-weight:300;font-size:.96rem}
   @media(max-width:760px){.pillars{grid-template-columns:1fr}.pillar{border-right:none;border-bottom:1px solid var(--line)}.pillar:last-child{border-bottom:none}}
 
   /* ingredients grid */
-  .ing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .ing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
   .ing{
+    display:flex;gap:16px;align-items:flex-start;
     background:rgba(255,255,255,.4);border:1px solid var(--line);border-radius:16px;
-    padding:26px 22px;position:relative;overflow:hidden;transition:transform .35s,border-color .35s,background .35s;
+    padding:20px 22px;position:relative;overflow:hidden;transition:transform .35s,border-color .35s,background .35s;
   }
   .ing::before{content:"";position:absolute;inset:0;background:var(--grad-soft);opacity:0;transition:opacity .35s}
   .ing:hover{transform:translateY(-5px);border-color:transparent;background:rgba(255,255,255,.7)}
   .ing:hover::before{opacity:1}
   .ing>*{position:relative;z-index:1}
+  .ing img{
+    width:64px;height:64px;object-fit:cover;border-radius:12px;flex:0 0 auto;
+    border:1px solid var(--line);background:rgba(255,255,255,.5);
+  }
+  .ing-copy{min-width:0}
+  .ing h3{font-family:var(--serif);font-weight:500;font-size:1.22rem;line-height:1.2;margin-bottom:4px}
   .ing .k{
-    font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);
-    font-weight:600;margin-bottom:10px;
+    font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);
+    font-weight:600;margin-bottom:6px;line-height:1.35;
   }
-  .ing h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;margin-bottom:8px}
   .ing p{color:var(--ink-soft);font-weight:300;font-size:.9rem;line-height:1.5}
-  @media(max-width:900px){.ing-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:480px){.ing-grid{grid-template-columns:1fr}}
-
-  /* spices strip */
-  .spices{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-  .chip{
-    border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-size:.82rem;
-    background:rgba(255,255,255,.4);color:var(--ink);font-weight:400;letter-spacing:.02em;
-    display:inline-flex;gap:9px;align-items:center;
-  }
-  .chip i{width:6px;height:6px;border-radius:50%;background:var(--grad);font-style:normal}
+  @media(max-width:640px){.ing-grid{grid-template-columns:1fr}}
+  .ing-split{margin:48px 0 20px;text-align:center}
 
   /* ritual */
   .ritual{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
@@ -233,7 +252,7 @@
   @media(max-width:820px){.ritual{grid-template-columns:1fr;gap:36px}}
 
   /* testimonials */
-  .t-band{background:linear-gradient(180deg,transparent,rgba(74,31,110,.05) 20%,rgba(74,31,110,.05) 80%,transparent)}
+  .t-band{background:linear-gradient(180deg,transparent,rgba(63,32,131,.05) 20%,rgba(63,32,131,.05) 80%,transparent)}
   .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   .tcard{
     background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:20px;
@@ -268,13 +287,6 @@
   .shot .ph{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
   .shot .ico{font-size:1.4rem;opacity:.5}
   @media(max-width:820px){.gallery{grid-template-columns:repeat(2,1fr)}}
-
-  /* label deep-dive */
-  .label-band{text-align:center}
-  .label-img{
-    max-width:560px;margin:44px auto 0;border-radius:20px;overflow:hidden;
-    border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(42,27,61,.55);
-  }
 
   /* buy CTA */
   .buy-cta{
@@ -320,9 +332,35 @@
   /* footer */
   footer{padding:64px 0 40px;border-top:1px solid var(--line);margin-top:100px}
   .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
-  .foot .brand img{height:34px}
+  .foot .brand img{height:auto;width:70px}
   .foot p{font-size:.82rem;color:var(--ink-soft)}
   .foot .loc{font-family:var(--serif);font-style:italic;color:var(--plum)}
+  .foot .ig{
+    font-size:.82rem;color:var(--ink-soft);text-decoration:none;
+    letter-spacing:.12em;text-transform:uppercase;
+  }
+  .foot .ig:hover{color:var(--plum)}
+
+  /* about / recipes / contact */
+  .page-copy{max-width:560px;margin:0 auto;text-align:center}
+  .page-copy .lede-copy{color:var(--ink-soft);font-weight:300;font-size:1.15rem}
+  .contact-email{margin:0 0 36px;font-size:1.05rem}
+  .contact-email a{color:var(--plum);font-weight:500;text-decoration:none;border-bottom:1px solid rgba(83,52,141,.35)}
+  .contact-email a:hover{border-bottom-color:var(--plum)}
+  .contact-form{
+    max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:14px;text-align:left;
+  }
+  .contact-form label{
+    font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--ink-soft);
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .contact-form input,.contact-form textarea{
+    width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:12px;
+    background:rgba(255,255,255,.55);font-family:inherit;font-size:1rem;color:var(--ink);
+  }
+  .contact-form textarea{min-height:140px;resize:vertical}
+  .contact-form .btn{align-self:flex-start;margin-top:6px}
+  .form-note{font-size:.82rem;color:var(--ink-soft);margin-top:4px}
 
   /* ---------- fixed buy bar ---------- */
   .buybar{
@@ -336,7 +374,7 @@
   .bb-left{display:flex;align-items:center;gap:16px;min-width:0}
   .bb-thumb{width:46px;height:46px;border-radius:12px;overflow:hidden;flex:0 0 auto;border:1px solid var(--line)}
   .bb-info{min-width:0}
-  .bb-logo{height:40px;width:auto;display:block;margin-bottom:2px}
+  .bb-logo{height:auto;width:82px;display:block;margin-bottom:2px}
   .bb-info span{font-size:.78rem;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
   .bb-right{display:flex;align-items:center;gap:12px;flex:0 0 auto}
   .bb-buy{padding:14px 26px;white-space:nowrap}
@@ -360,11 +398,15 @@
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top"><img src="images/logo-lockup.png" alt="MUUD Elixir"></a>
+    <input type="checkbox" id="nav-toggle" class="nav-check" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></label>
     <nav class="nav-links">
+      <a href="#about">About</a>
       <a href="#ingredients">Ingredients</a>
       <a href="#ritual">The Ritual</a>
+      <a href="#recipes">Recipes</a>
       <a href="#testimonials">Stories</a>
+      <a href="#contact">Contact</a>
       <a href="#buy">Buy</a>
     </nav>
   </div>
@@ -373,10 +415,10 @@
 <a id="top"></a>
 <section class="hero wrap">
   <div class="hero-copy">
-    <span class="mark"><img src="images/logo-lockup.png" alt="MUUD Elixir"></span>
+    <span class="mark"><img src="images/logo-wordmark.png" alt="MUUD Elixir"></span>
     <div class="ritual-line"><b></b><span>Renew · Remember · Return</span><b></b></div>
     <h1>Nature's wisdom,<br><em>modern alchemy.</em></h1>
-    <p class="lede">An organic, fair-trade elixir powered by seven functional mushrooms, ashwagandha &amp; raw cacao. One cup — for body, mind &amp; soul.</p>
+    <p class="lede">An organic elixir powered by seven functional mushrooms, ashwagandha &amp; raw cacao. One cup — for body, mind &amp; soul.</p>
     <div class="hero-cta">
       <a href="#buy" class="btn btn-primary">Begin the ritual →</a>
       <span class="price-note">$39.99 · 80g jar · shipping included</span>
@@ -391,7 +433,7 @@
 
 <div class="marquee">
   <div class="marquee-track">
-    <span>All organic · fair trade</span><span>7 functional mushrooms</span><span>+ ashwagandha</span><span>Raw cacao richness</span><span>No fillers · no gums</span><span>All organic · fair trade</span><span>7 functional mushrooms</span><span>+ ashwagandha</span><span>Raw cacao richness</span><span>No fillers · no gums</span>
+    <span>All organic</span><span>7 functional mushrooms</span><span>+ ashwagandha</span><span>Raw cacao richness</span><span>No fillers · no gums</span><span>All organic</span><span>7 functional mushrooms</span><span>+ ashwagandha</span><span>Raw cacao richness</span><span>No fillers · no gums</span>
   </div>
 </div>
 
@@ -404,9 +446,9 @@
       <p>Every jar is a small act of alchemy — ancient adaptogens and modern nourishment, blended to help you feel clear, calm and quietly energised.</p>
     </div>
     <div class="pillars reveal">
-      <div class="pillar"><div class="num">i.</div><h3>Renew</h3><p>Adaptogens and functional mushrooms help your body meet stress with resilience instead of exhaustion.</p></div>
-      <div class="pillar"><div class="num">ii.</div><h3>Remember</h3><p>Lion's mane and cacao support focus, clarity and a steady, grounded kind of energy.</p></div>
-      <div class="pillar"><div class="num">iii.</div><h3>Return</h3><p>A warm, ceremonial cup to come back to yourself — morning ritual or evening wind-down.</p></div>
+      <div class="pillar"><h3>Renew</h3><p>Adaptogens and functional mushrooms help your body meet stress with resilience instead of exhaustion.</p></div>
+      <div class="pillar"><h3>Remember</h3><p>Lion's mane and cacao support focus, clarity and a steady, grounded kind of energy.</p></div>
+      <div class="pillar"><h3>Return</h3><p>A warm, ceremonial cup to come back to yourself — morning ritual or evening wind-down.</p></div>
     </div>
   </div>
 </section>
@@ -420,24 +462,27 @@
       <p>Each one earns its place. Together they cover focus, immunity, energy, calm and everything in between.</p>
     </div>
     <div class="ing-grid reveal">
-      <div class="ing"><div class="k">Focus · Clarity · Memory</div><h3>Lion's Mane</h3><p>Supports cognitive function, focus &amp; nerve growth for a sharper, clearer mind.</p></div>
-      <div class="ing"><div class="k">Immunity · Hormones</div><h3>Maitake</h3><p>Supports immune health, hormone balance and a healthy metabolism.</p></div>
-      <div class="ing"><div class="k">Immune · Gut · Defense</div><h3>Turkey Tail</h3><p>Rich in antioxidants; supports the immune system and gut health.</p></div>
-      <div class="ing"><div class="k">Heart · Immunity</div><h3>Shiitake</h3><p>Supports heart health, immune function and healthy, graceful aging.</p></div>
-      <div class="ing"><div class="k">Energy · Stamina</div><h3>Cordyceps</h3><p>Boosts energy, vitality and endurance while fighting fatigue naturally.</p></div>
-      <div class="ing"><div class="k">Antioxidant · Detox</div><h3>Chaga</h3><p>Supports cellular health, detox and a balanced inflammation response.</p></div>
-      <div class="ing"><div class="k">Calm · Balance · Restore</div><h3>Reishi</h3><p>Eases stress, supports restful sleep and promotes overall balance.</p></div>
-      <div class="ing"><div class="k">Cortisol · Calm · Adaptogen</div><h3>Ashwagandha</h3><p>Helps balance cortisol, supports mood, resilience and restful sleep.</p></div>
+      <div class="ing"><img src="images/ingredients/lions-mane.jpg" alt=""><div class="ing-copy"><h3>Lion's Mane</h3><div class="k">Focus · Clarity · Memory</div><p>Supports cognitive function, focus &amp; nerve growth for a sharper, clearer mind.</p></div></div>
+      <div class="ing"><img src="images/ingredients/maitake.jpg" alt=""><div class="ing-copy"><h3>Maitake</h3><div class="k">Immunity · Hormones</div><p>Supports immune health, hormone balance and a healthy metabolism.</p></div></div>
+      <div class="ing"><img src="images/ingredients/turkey-tail.jpg" alt=""><div class="ing-copy"><h3>Turkey Tail</h3><div class="k">Immune · Gut · Defense</div><p>Rich in antioxidants; supports the immune system and gut health.</p></div></div>
+      <div class="ing"><img src="images/ingredients/shiitake.jpg" alt=""><div class="ing-copy"><h3>Shiitake</h3><div class="k">Heart · Immunity</div><p>Supports heart health, immune function and healthy, graceful aging.</p></div></div>
+      <div class="ing"><img src="images/ingredients/cordyceps.jpg" alt=""><div class="ing-copy"><h3>Cordyceps</h3><div class="k">Energy · Stamina</div><p>Boosts energy, vitality and endurance while fighting fatigue naturally.</p></div></div>
+      <div class="ing"><img src="images/ingredients/chaga.jpg" alt=""><div class="ing-copy"><h3>Chaga</h3><div class="k">Antioxidant · Detox</div><p>Supports cellular health, detox and a balanced inflammation response.</p></div></div>
+      <div class="ing"><img src="images/ingredients/reishi.jpg" alt=""><div class="ing-copy"><h3>Reishi</h3><div class="k">Calm · Balance · Restore</div><p>Eases stress, supports restful sleep and promotes overall balance.</p></div></div>
+      <div class="ing"><img src="images/ingredients/ashwagandha.jpg" alt=""><div class="ing-copy"><h3>Ashwagandha</h3><div class="k">Cortisol · Calm · Adaptogen</div><p>Helps balance cortisol, supports mood, resilience and restful sleep.</p></div></div>
     </div>
-    <div class="spices reveal">
-      <span class="chip"><i></i>Raw Cacao</span>
-      <span class="chip"><i></i>Dutch Cacao</span>
-      <span class="chip"><i></i>Ginger</span>
-      <span class="chip"><i></i>Turmeric</span>
-      <span class="chip"><i></i>Black Pepper</span>
-      <span class="chip"><i></i>Cayenne</span>
-      <span class="chip"><i></i>Ceylon Cinnamon</span>
-      <span class="chip"><i></i>Clove</span>
+    <div class="ing-split reveal">
+      <span class="eyebrow">Organic superfoods &amp; spices</span>
+    </div>
+    <div class="ing-grid reveal">
+      <div class="ing"><img src="images/ingredients/raw-cacao.jpg" alt=""><div class="ing-copy"><h3>Raw Cacao</h3><div class="k">Mood · Antioxidant · Heart</div><p>Mood-enhancing and antioxidant-rich, with support for a healthy heart.</p></div></div>
+      <div class="ing"><img src="images/ingredients/dutch-cacao.jpg" alt=""><div class="ing-copy"><h3>Dutch Processed Cacao</h3><div class="k">Flavor · Antioxidants · Circulation</div><p>Deep, rich chocolate flavor with antioxidant support and a lift for circulation.</p></div></div>
+      <div class="ing"><img src="images/ingredients/ginger.jpg" alt=""><div class="ing-copy"><h3>Ginger</h3><div class="k">Digestion · Anti-inflammatory</div><p>Supports digestion, eases inflammation and soothes nausea.</p></div></div>
+      <div class="ing"><img src="images/ingredients/turmeric.jpg" alt=""><div class="ing-copy"><h3>Turmeric</h3><div class="k">Anti-inflammatory · Antioxidant</div><p>A powerful anti-inflammatory, rich in antioxidants.</p></div></div>
+      <div class="ing"><img src="images/ingredients/black-pepper.jpg" alt=""><div class="ing-copy"><h3>Black Pepper</h3><div class="k">Absorption · Metabolism</div><p>Helps the body absorb curcumin and supports a healthy metabolism.</p></div></div>
+      <div class="ing"><img src="images/ingredients/cayenne.jpg" alt=""><div class="ing-copy"><h3>Cayenne Pepper</h3><div class="k">Circulation · Metabolism · Heat</div><p>Boosts circulation, ignites metabolism and brings a natural heat.</p></div></div>
+      <div class="ing"><img src="images/ingredients/ceylon-cinnamon.jpg" alt=""><div class="ing-copy"><h3>Ceylon Cinnamon</h3><div class="k">Blood sugar · Metabolism</div><p>Helps balance blood sugar, supports metabolism and is gently anti-inflammatory.</p></div></div>
+      <div class="ing"><img src="images/ingredients/clove.jpg" alt=""><div class="ing-copy"><h3>Clove</h3><div class="k">Antimicrobial · Digestion</div><p>Antimicrobial support for digestion, and rich in antioxidants.</p></div></div>
     </div>
   </div>
 </section>
@@ -466,7 +511,6 @@
     <div class="sec-head center reveal">
       <span class="eyebrow">Stories from the cup</span>
       <h2>Loved by <em>early risers &amp; late thinkers.</em></h2>
-      <p>Placeholder reviews — swap these for real words from your customers.</p>
     </div>
     <div class="t-grid reveal">
       <div class="tcard">
@@ -494,18 +538,6 @@
       <div class="shot"><span class="ico">◍</span><span class="ph">Customer photo</span></div>
       <div class="shot"><span class="ico">◍</span><span class="ph">Customer photo</span></div>
     </div>
-  </div>
-</section>
-
-<!-- label deep dive -->
-<section class="band label-band">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow">Nothing to hide</span>
-      <h2>Every ingredient, <em>on the label.</em></h2>
-      <p>All organic, all fair trade. Here's the full story of what's in every cup.</p>
-    </div>
-    <div class="label-img reveal"><img src="images/infographic.jpg" alt="MUUD Elixir full ingredient breakdown"></div>
   </div>
 </section>
 
@@ -550,11 +582,56 @@
   </div>
 </section>
 
+<!-- about -->
+<section class="band" id="about">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">About us</span>
+      <h2>About <em>us.</em></h2>
+    </div>
+    <div class="page-copy reveal">
+      <p class="lede-copy">Run by two fabulous ladies out of London, Ontario.</p>
+    </div>
+  </div>
+</section>
+
+<!-- recipes -->
+<section class="band" id="recipes">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Recipes</span>
+      <h2>Recipes <em>coming soon.</em></h2>
+    </div>
+  </div>
+</section>
+
+<!-- contact -->
+<section class="band" id="contact">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Contact</span>
+      <h2>Say <em>hello.</em></h2>
+    </div>
+    <div class="page-copy reveal">
+      <p class="contact-email">Email us at <a href="mailto:hello@muudelixir.com">hello@muudelixir.com</a></p>
+      <form class="contact-form" action="mailto:hello@muudelixir.com" method="get">
+        <input type="hidden" name="subject" value="Hello from the MUUD site">
+        <label>Name<input type="text" name="name" autocomplete="name" required></label>
+        <label>Your email<input type="email" name="email" autocomplete="email" required></label>
+        <label>Message<textarea name="body" required></textarea></label>
+        <button type="submit" class="btn btn-primary">Send</button>
+        <p class="form-note">Opens your email app.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap foot">
-    <a class="brand" href="#top"><img src="images/logo-lockup.png" alt="MUUD Elixir"></a>
+    <a class="brand" href="#top"><img src="images/logo-wordmark.png" alt="MUUD Elixir"></a>
     <p class="loc">Renew · Remember · Return — London, Ontario</p>
-    <p>© 2026 MUUD Elixir. All organic, fair trade.</p>
+    <a class="ig" href="https://www.instagram.com/muudelixir/" target="_blank" rel="noopener">Instagram</a>
+    <p>© 2026 MUUD Elixir. All organic.</p>
   </div>
 </footer>
 
@@ -563,7 +640,7 @@
   <div class="wrap">
     <div class="bb-left">
       <div class="bb-thumb"><img src="images/jar.jpg" alt=""></div>
-      <div class="bb-info"><img src="images/logo-lockup.png" alt="MUUD Elixir" class="bb-logo"><span>80g · 7 mushrooms + ashwagandha</span></div>
+      <div class="bb-info"><img src="images/logo-wordmark.png" alt="MUUD Elixir" class="bb-logo"><span>80g · 7 mushrooms + ashwagandha</span></div>
     </div>
     <div class="bb-right">
       <!-- direct to PayPal checkout (new tab) -->
@@ -577,6 +654,22 @@
   // scroll reveal
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // close mobile nav after a tap
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('click',()=>{const t=document.getElementById('nav-toggle');if(t)t.checked=false});
+  });
+
+  // compose mailto body so name + email aren't lost as extra query params
+  document.querySelector('.contact-form')?.addEventListener('submit',e=>{
+    const fd=new FormData(e.target);
+    const name=fd.get('name')||'';
+    const email=fd.get('email')||'';
+    const message=fd.get('body')||'';
+    const body=`From: ${name} <${email}>\n\n${message}`;
+    e.preventDefault();
+    location.href=`mailto:hello@muudelixir.com?subject=${encodeURIComponent('Hello from the MUUD site')}&body=${encodeURIComponent(body)}`;
+  });
 </script>
 
 <!-- PayPal buy buttons are standalone POST forms in #buy (no SDK needed). -->
