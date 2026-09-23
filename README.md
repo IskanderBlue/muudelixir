@@ -10,12 +10,17 @@ Single-page static site for MUUD Elixir. No build step — just `index.html` + `
 
 ## Buy buttons (PayPal — live)
 
-Two products, priced **all-in with shipping included** (no separate tax line):
+There are two products. The site shows the product price and the shipping price separately.
 
-| Product   | Price      | PayPal hosted-button ID |
-|-----------|------------|-------------------------|
-| Single jar | $39.99 CAD | `LU3HG5AQLKKJC` |
-| 3-pack     | $79.99 CAD | `H3QYSLKAVYKU2` |
+| Product   | Price      | Shipping (profile, per order) | PayPal hosted-button ID |
+|-----------|------------|----------------------------|-------------------------|
+| Single jar | $22.23 CAD | $18.99 CAD | `LU3HG5AQLKKJC` |
+| 3-pack     | $60.02 CAD | $18.99 CAD | `H3QYSLKAVYKU2` |
+
+- The 3-pack price is 3 × $22.23, less 10%.
+- The shipping fee comes from the PayPal shipping profile: a flat $18.99 for the payment-amount range that covers both products. The pay links must use "shipping from Settings".
+- Each pay link has a flat 13% tax rate (the Ontario HST). The tax applies to the whole order, product and shipping. The totals are $46.58 (single jar) and $89.28 (3-pack). This setup is temporary. The plan is region-based sales tax in the PayPal profile. The GST/HST registration and zero-rated status of the product still need an answer from the accountant.
+- The site ships to Canada only. The buy section tells customers outside Canada to email `hello@muudelixir.com`.
 
 These are standalone PayPal **hosted-button POST forms** in the buy section (`#buy` → `.tiers`) — no SDK/JS needed:
 - Each tier has a `<form action="https://www.paypal.com/ncp/payment/<ID>" method="post" target="_blank">` with a `.pp-btn` submit button. Clicking opens PayPal checkout in a new tab.
